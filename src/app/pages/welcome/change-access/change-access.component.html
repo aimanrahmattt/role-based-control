@@ -1,0 +1,16 @@
+<div nz-row>
+  <div nz-col nzSpan="24">
+    <a nz-button nzType="default" routerLink="/welcome">
+      Back
+    </a>
+
+    <h5 class="mt-3 text-lg font-medium">Current user access: {{ currentUserAccess }}</h5>
+
+    <h5 class="mt-3 mb-2 text-lg font-medium">Set User Access</h5>
+
+    <button nz-button nzType="primary" (click)="setAccess(['User A'])" class="mr-2">User A</button>
+    <button nz-button nzType="primary" (click)="setAccess(['User B'])" class="mr-2">User B</button>
+    <button nz-button nzType="primary" (click)="setAccess(['User C'])" class="mr-2">User C</button>
+    <button nz-button nzType="primary" (click)="setAccess(['All'])">All</button>
+  </div>
+</div>

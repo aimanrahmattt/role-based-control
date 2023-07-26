@@ -1,0 +1,17 @@
+<div nz-row>
+  <div nz-col nzSpan="24">
+    <h5 class="text-lg font-medium">Current user access: {{ currentUserAccess }}</h5>
+  </div>
+
+  <div nz-col nzSpan="24" class="mt-4">
+    <h5 class="text-lg font-medium">List of Buttons</h5>
+    <button *acIf="'User A'" nz-button nzType="primary" class="me-2">User A</button>
+    <button *acIf="'User B'" nz-button nzType="primary" class="me-2">User B</button>
+    <button *acIf="'User C'" nz-button nzType="primary" class="me-2">User C</button>
+    <button *acIf="'All'" nz-button nzType="primary">All</button>
+  </div>
+
+  <div nz-col nzSpan="24" class="mt-4">
+    <a nz-button nzType="default" routerLink="/welcome/change-access">Change Access</a>
+  </div>
+</div>
