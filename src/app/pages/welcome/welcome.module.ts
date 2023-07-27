@@ -8,6 +8,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { DirectivesModule } from 'src/app/directives/directives.module';
 import { ChangeAccessComponent } from './change-access/change-access.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NzGridModule,
     NzButtonModule,
     DirectivesModule,
-    NzIconModule
+    NzIconModule,
+    CommonModule
   ],
   declarations: [WelcomeComponent, ChangeAccessComponent],
   exports: [WelcomeComponent]

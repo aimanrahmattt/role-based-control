@@ -1,11 +1,14 @@
-import { Directive, ElementRef, Input, OnDestroy, Renderer2, RendererStyleFlags2, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, ElementRef, Input, OnDestroy, OnInit, Renderer2, RendererStyleFlags2, TemplateRef, ViewContainerRef } from '@angular/core';
 import { AccessControlService } from '../services/access-control/access-control.service';
 import { Subject } from 'rxjs';
 
 @Directive({
   selector: '[acIf]'
 })
-export class AccessibleDirective implements OnDestroy {
+export class AccessibleDirective implements OnInit, OnDestroy {
+  @Input("acIf") role: string = '';
+  @Input("acIfElse") unauthorized?: TemplateRef<any>;
+
   currentRole: string = '';
   onDestroy$ = new Subject();
 
@@ -17,13 +20,13 @@ export class AccessibleDirective implements OnDestroy {
     private templateRef: TemplateRef<any>
   ) {
   }
-
-  @Input()
-  set acIf(role: string) {
-    if(this.accessService.hasRole(role) || this.accessService.hasAllPermission()) {
+  
+  ngOnInit(): void {
+    if (this.accessService.hasRole(this.role) || this.accessService.hasAllPermission()) {
       this.viewContainer.createEmbeddedView(this.templateRef);
-    } else {
+    } else if (this.unauthorized) {
       this.viewContainer.clear();
+      this.viewContainer.createEmbeddedView(this.unauthorized);
     }
   }
 

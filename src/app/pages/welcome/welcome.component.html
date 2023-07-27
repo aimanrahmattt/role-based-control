@@ -3,15 +3,23 @@
     <h5 class="text-lg font-medium">Current user access: {{ currentUserAccess }}</h5>
   </div>
 
-  <div nz-col nzSpan="24" class="mt-4">
-    <h5 class="text-lg font-medium">List of Buttons</h5>
-    <button *acIf="'User A'" nz-button nzType="primary" class="me-2">User A</button>
-    <button *acIf="'User B'" nz-button nzType="primary" class="me-2">User B</button>
-    <button *acIf="'User C'" nz-button nzType="primary" class="me-2">User C</button>
-    <button *acIf="'All'" nz-button nzType="primary">All</button>
+  <div nz-col nzSpan="24" class="mt-2">
+    <a nz-button nzType="default" routerLink="/welcome/change-access">Change Access</a>
   </div>
 
-  <div nz-col nzSpan="24" class="mt-4">
-    <a nz-button nzType="default" routerLink="/welcome/change-access">Change Access</a>
+  <div nz-col nzSpan="24" class="mt-5">
+    <h5 class="text-lg font-medium">List of Buttons</h5>
+    <div *ngFor="let user of usersList; index as i">
+        <div nz-row [ngClass]="{'mt-2': i !== 0}">
+            <div nz-col nzSpan="2">{{ user }}:</div>
+            <div nz-col nzSpan="6">
+                <button *acIf="user; else unauthorized" nz-button nzType="primary" [ngClass]="{'me-2': i !== usersList.length}" class="me-2">{{ user }}</button>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #unauthorized>
+        {{ currentUserAccess }} is not authorized
+    </ng-template>
   </div>
 </div>

@@ -10,6 +10,7 @@ import { AccessControlService } from 'src/app/services/access-control/access-con
 export class WelcomeComponent implements OnInit, OnDestroy {
   currentUserAccess: string[] = [];
   subscriptions: Subscription[] = [];
+  usersList: string[] = ['User A', 'User B', 'User C', 'All']
 
   constructor(
     private accessService: AccessControlService
